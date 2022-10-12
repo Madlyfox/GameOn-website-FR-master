@@ -414,7 +414,7 @@ input {
 .hero-headline {
   font-size: 6rem;
   font-weight: normal;
-  white-space: nowrap;
+  white-space: wrap;
 }
 .hero-text {
   width: 146%;
@@ -511,14 +511,6 @@ footer {
 }
 
 @media screen and (max-width: 540px) {
-  .topnav a {
-    display: none;
-  }
-  .topnav a.icon {
-    float: right;
-    display: block;
-    margin-top: -15px;
-  }
   .hero-headline {
     font-size: 4rem;
     white-space: normal;
