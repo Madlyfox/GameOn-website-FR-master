@@ -216,7 +216,7 @@ form.addEventListener("submit", function (e) {
   // if the form is valid
 
   if (isFormValid) {
-    alert("Merci, votre inscription a bine été prise en compte !");
+    alert("Merci, votre inscription a bien été prise en compte !");
   } else {
     e.preventDefault();
   }

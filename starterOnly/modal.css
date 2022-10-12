@@ -418,7 +418,6 @@ input {
 .hero-headline {
   font-size: 6rem;
   font-weight: normal;
-  white-space: wrap;
 }
 .hero-text {
   width: 146%;
@@ -507,7 +506,6 @@ footer {
   .hero-headline {
     font-size: 5rem;
     font-weight: normal;
-    white-space: wrap;
   }
   .hero-text {
     width: auto;
