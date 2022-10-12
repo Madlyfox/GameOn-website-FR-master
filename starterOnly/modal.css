@@ -95,6 +95,10 @@ main {
   border-radius: 2rem;
   text-align: justify;
 }
+img {
+  height: auto;
+  width: auto;
+}
 
 .modal-btn {
   font-size: 145%;

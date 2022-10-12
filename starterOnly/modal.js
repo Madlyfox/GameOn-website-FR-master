@@ -20,6 +20,7 @@ const emailEl = document.getElementById("email");
 const birthdateEl = document.getElementById("birthdate");
 const quantityEl = document.getElementById("quantity");
 const radios = document.getElementsByName("location");
+const checkbox = document.getElementById("checkbox1");
 
 const isRequired = (value) => (value === "" ? false : true);
 const isBetween = (length, min, max) =>
@@ -84,11 +85,11 @@ const checkFirstname = () => {
   const firstname = firstnameEl.value.trim();
 
   if (!isRequired(firstname)) {
-    showError(firstnameEl, "Firstname cannot be blank.");
+    showError(firstnameEl, "Veuillez renseigner vote prénom.");
   } else if (!isBetween(firstname.length, min, max)) {
     showError(
       firstnameEl,
-      `Firstname must be between ${min} and ${max} characters.`
+      `Veuillez entrer entre ${min} et ${max} caractères pour le champ du nom.`
     );
   } else {
     showSuccess(firstnameEl);
@@ -106,11 +107,11 @@ const checkLastname = () => {
   const lastname = lastnameEl.value.trim();
 
   if (!isRequired(lastname)) {
-    showError(lastnameEl, "Lastname cannot be blank.");
+    showError(lastnameEl, "Veuillez renseigner votre nom.");
   } else if (!isBetween(lastname.length, min, max)) {
     showError(
       lastnameEl,
-      `Lastname must be between ${min} and ${max} characters.`
+      `Veuillez entrer entre ${min} et ${max} caractères pour le champ du nom.`
     );
   } else {
     showSuccess(lastnameEl);
@@ -125,9 +126,9 @@ const checkEmail = () => {
   let valid = false;
   const email = emailEl.value.trim();
   if (!isRequired(email)) {
-    showError(emailEl, "Email cannot be blank.");
+    showError(emailEl, "Veuillez entrer vote adresse mail.");
   } else if (!isEmailValid(email)) {
-    showError(emailEl, "Email is not valid.");
+    showError(emailEl, "Veuillez entrer une adresse mail valide.");
   } else {
     showSuccess(emailEl);
     valid = true;
@@ -143,7 +144,7 @@ const checkBirthdate = () => {
   const birthdate = birthdateEl;
 
   if (birthdate.value.trim() === "") {
-    showError(birthdate, "Birthdate cannot be blank");
+    showError(birthdate, "Vous devez entrer votre date de naissance.");
   } else {
     showSuccess(birthdate);
     valid = true;
@@ -169,13 +170,30 @@ const checkLocation = () => {
         location[5].checked
       )
     ) {
-      showError(location[i], "Location is required");
+      showError(location[i], "Vous devez choisir une option.");
     } else {
       showSuccess(location[i]);
       valid = true;
     }
     return valid;
   }
+};
+
+// CHECK CGU
+
+const checkCGU = () => {
+  let valid = false;
+
+  if (checkbox.checked == true) {
+    showSuccess(checkbox);
+    valid = true;
+  } else {
+    showError(
+      checkbox,
+      "Vous devez vérifier que vous acceptez les termes et conditions."
+    );
+  }
+  return valid;
 };
 
 form.addEventListener("submit", function (e) {
@@ -185,14 +203,18 @@ form.addEventListener("submit", function (e) {
     isEmailValid = checkEmail(),
     isBirthdateValid = checkBirthdate();
   isLocationValid = checkLocation();
+  isCheckBoxValid = checkCGU();
+
   let isFormValid =
     isFirstnameValid &&
     isLastnameValid &&
     isEmailValid &&
     isBirthdateValid &&
-    isLocationValid;
+    isLocationValid &&
+    isCheckBoxValid;
 
   // if the form is valid
+
   if (isFormValid) {
     alert("Merci, votre inscription a bine été prise en compte !");
   } else {
@@ -217,5 +239,7 @@ form.addEventListener("input", function (e) {
     case "location":
       checkLocation();
       break;
+    case "checkbox":
+      checkCGU();
   }
 });
